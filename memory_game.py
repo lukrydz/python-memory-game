@@ -49,9 +49,24 @@ def generate_board(height, width):
 
     return board
 
+def print_board(board, shadow=False):
+
+    print(2*' ', end="")
+    letters_to_use = alphabet[0:len(board)]
+    for letter in letters_to_use:
+        print(letter, end=" ")
+    print('\n')
+
+    for row in range(len(board)):
+        print(row+1, end=' ')
+        for x in board[row]:
+            print(x, end=" ")
+        print('')
+
 
 def main():
-    board = generate_board(6, 6)
+
+    pass
 
 if __name__ == "__main__":
     main()
