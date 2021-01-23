@@ -63,6 +63,23 @@ def print_board(board, shadow=False):
         print('')
 
 
+def is_letternumber(move, letters, num_cols):
+
+    if move == 'quit':
+        exit()
+
+    elif move[0].upper() not in letters:
+        print('Your move is invalid. Please try again.')
+        return False
+
+    elif move[1, len(move)] not in range(num_cols):
+        print('Your move is invalid. Please try again.')
+        return False
+    
+    else:
+        return True
+
+
 def get_move(board):
     #determining board rows and cols
     num_rows = len(board)
@@ -71,31 +88,13 @@ def get_move(board):
     #assigning letters to available rows
     letters = alphabet[:num_rows]
 
-    while True:
-        move = input("Please, pick a move eg. A2, or type 'quit' to exit: ")
+    while validator != True:
+        move = input(f"Please, pick a move from A to {letters[-1]} and from 1 to {num_cols-1}:")
 
-        if move.lower() == 'quit':
-            exit()
-
-        if len(board) < 10 and len(move) != 2:
-            print('Invalid move. Please try again.')
-            continue
-
-        if move[0].upper() not in letters:
-            print('Your move is outside the board. Please try again.')
-            continue
-
-        if int(move[1]) not in range(1, num_cols + 1):
-            print('Your move is outside the board. Please try again.')
-            continue
-
-        else:
-            row = letters.index(move[0].upper()) #checks position of an uppercased letter in letters list
-            col = int(move[1]) - 1
-
-        else:
-            break 
-
+        if is_letternumber(move, letters, num_cols):
+            validator = True
+            row, col = move[0], move[1, len(move)]
+       
     return row, col
 
 
