@@ -119,23 +119,64 @@ def board_revealed(board):
 
 
 def main():
-    # while not endgame
+    
+    endgame = False
 
-    # endgame if all letters are revealed
+    print("Welcome to Memory Game!")
 
-    # generate board
-    board = generate_board(6, 6)
-    print_board(board)
+    difficulty = choose_difficulty()
 
-    # go to revealing sequence
+    diffic_base = {'1': (5,4), '2': (5,6), '3':(5,10)}
 
-    # reveal 1st letter
+    width, height = diffic_base[difficulty]
 
-    # reveal 2nd letter
+    board = generate_board(width, height)
 
-    # if letters are the same stay them on board
+    move_counter = 0
 
-    # if letters are not the same show hidden brd
+    while not endgame: # endgame if all letters are revealed
+
+        print_board(board)
+
+        # go to revealing sequence
+        row, col = get_move(board)
+
+        tempboard = copy.deepcopy(board)
+
+        lastguessed = row, col
+
+        for key, value in letters_positions.items():
+            if (row, col) in value:
+                letter_to_reveal = key
+
+        tempboard[row][col] = letter_to_reveal 
+
+        print_board(tempboard)
+
+        # reveal 2nd letter
+
+        row, col = get_move(board)
+
+        if (row, col) in lastguessed:
+            row, col = get_move(board)
+
+        for key, value in letters_positions.items():
+            if (row, col) in value:
+                second_letter_to_reveal = key
+
+        tempboard[row][col] = second_letter_to_reveal
+
+        print_board(tempboard)
+
+        if letter_to_reveal == second_letter_to_reveal:
+            board = tempboard
+
+        if board_revealed(board):
+            endgame = True
+
+        move_counter += 1
+
+    print("Goodbye!")
 
 if __name__ == "__main__":
     main()
