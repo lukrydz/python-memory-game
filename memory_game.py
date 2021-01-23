@@ -1,6 +1,7 @@
 import os
 import random
 import copy
+import time
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 letters_positions = dict()
@@ -119,7 +120,7 @@ def get_move(board):
 
 
 def board_revealed(board):
-    for row in len(board):
+    for row in range(len(board)):
         for col in range(len(board[row])):
             if board[row][col] == '#':
                 return False
@@ -177,6 +178,8 @@ def main():
 
         if letter_to_reveal == second_letter_to_reveal:
             board = tempboard
+        else:
+            time.sleep(1)
 
         if board_revealed(board):
             endgame = True
