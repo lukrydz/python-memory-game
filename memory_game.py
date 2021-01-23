@@ -1,5 +1,6 @@
 import os
 import random
+import copy
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 letters_positions = dict()
