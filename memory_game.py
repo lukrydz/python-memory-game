@@ -8,6 +8,7 @@ letters_positions = dict()
 def console_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def get_random_letter():
     return alphabet[random.randrange(0, len(alphabet))]
 
