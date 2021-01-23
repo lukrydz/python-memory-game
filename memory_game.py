@@ -96,15 +96,18 @@ def get_move(board):
     num_cols = len(board[0])
 
     #assigning letters to available rows
-    letters = alphabet[:num_rows]
+    letters = alphabet[:num_cols]
+    
+    validator = False
 
-    while validator != True:
+    while not validator:
         move = input(f"Please, pick a move from A to {letters[-1]} and from 1 to {num_cols-1}:")
 
-        if is_letternumber(move, letters, num_cols):
+        if is_letternumber(move, letters, num_rows):
             validator = True
-            row, col = move[0], move[1, len(move)]
-       
+            row = int(move[1:len(move)]) - 1
+            col = alphabet.index(move[0].upper())
+     
     return row, col
 
 
