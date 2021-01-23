@@ -5,6 +5,7 @@ import copy
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 letters_positions = dict()
 
+
 # clears the screen
 def console_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,17 +22,14 @@ def choose_difficulty():
 def get_random_letter():
     return alphabet[random.randrange(0, len(alphabet))]
 
-def get_letter_position(height, width):
+def generate_possible_places(height, width):
+    return [(x,y) for x in range(width) for y in range(height)]
 
-        pos1_rows = random.randrange(0, width)
-        pos1_cols = random.randrange(0, height)
+def get_letter_position(possible_places):
 
-        coordinates = pos1_rows, pos1_cols
+    coordinates = random.choice(possible_places)
 
-        if coordinates in letters_positions.values():
-            get_letter_position(height, width)
-        else:
-            return coordinates
+    return coordinates
 
 def generate_board(height, width):
 
@@ -51,8 +49,18 @@ def generate_board(height, width):
 
 # lets make it a dictionary with {letters: position1, position2}
 
+    possible_places = generate_possible_places(height, width)
+
     for letter in letters:
-        letters_positions[letter] = [get_letter_position(height, width), get_letter_position(height, width)]
+
+        position1 = get_letter_position(possible_places)
+        pos1_index = possible_places.index(position1)
+        possible_places.pop(pos1_index)
+        position2 = get_letter_position(possible_places)
+        pos2_index = possible_places.index(position2)
+        possible_places.pop(pos2_index)
+
+        letters_positions[letter] = [position1, position2]
 
     return board
 
