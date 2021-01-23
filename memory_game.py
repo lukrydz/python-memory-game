@@ -183,6 +183,7 @@ def main():
 
         if board_revealed(board):
             endgame = True
+            print(f"You win in {move_counter} moves!")
 
         move_counter += 1
 
