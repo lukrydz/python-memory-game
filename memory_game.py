@@ -9,6 +9,14 @@ def console_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def choose_difficulty():
+
+    diff =''
+    print("1 - Easy \n 2 - Medium \n 3 - Hard")
+    while diff not in ('1', '2', '3'):
+        diff = input("Please choose difficulty: ")
+    return diff
+
 def get_random_letter():
     return alphabet[random.randrange(0, len(alphabet))]
 
