@@ -3,7 +3,6 @@ import random
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 letters_positions = dict()
-board = list()
 
 # clears the screen
 def console_clear():
@@ -64,9 +63,60 @@ def print_board(board, shadow=False):
         print('')
 
 
-def main():
+def get_move(board):
+    #determining board rows and cols
+    num_rows = len(board)
+    num_cols = len(board[0])
 
-    pass
+    #assigning letters to available rows
+    letters = alphabet[:num_rows]
+
+    while True:
+        move = input("Please, pick a move eg. A2, or type 'quit' to exit: ")
+
+        if move.lower() == 'quit':
+            exit()
+
+        if len(board) < 10 and len(move) != 2:
+            print('Invalid move. Please try again.')
+            continue
+
+        if move[0].upper() not in letters:
+            print('Your move is outside the board. Please try again.')
+            continue
+
+        if int(move[1]) not in range(1, num_cols + 1):
+            print('Your move is outside the board. Please try again.')
+            continue
+
+        else:
+            row = letters.index(move[0].upper()) #checks position of an uppercased letter in letters list
+            col = int(move[1]) - 1
+
+        else:
+            break 
+
+    return row, col
+
+
+def main():
+    # while not endgame
+
+    # endgame if all letters are revealed
+
+    # generate board
+    board = generate_board(6, 6)
+    print_board(board)
+
+    # go to revealing sequence
+
+    # reveal 1st letter
+
+    # reveal 2nd letter
+
+    # if letters are the same stay them on board
+
+    # if letters are not the same show hidden brd
 
 if __name__ == "__main__":
     main()
