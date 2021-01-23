@@ -74,16 +74,15 @@ def print_board(board):
         print('')
 
 
-def is_letternumber(move, letters, num_cols):
+def is_letternumber(move, letters, num_rows):
+
+    column = move[0].upper()
+    row = move[1:len(move)]
 
     if move == 'quit':
         exit()
 
-    elif move[0].upper() not in letters:
-        print('Your move is invalid. Please try again.')
-        return False
-
-    elif move[1, len(move)] not in range(num_cols):
+    elif column not in letters:
         print('Your move is invalid. Please try again.')
         return False
     
