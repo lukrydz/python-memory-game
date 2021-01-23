@@ -52,13 +52,11 @@ def generate_board(height, width):
 # lets make it a dictionary with {letters: position1, position2}
 
     for letter in letters:
-        letter_1position = get_letter_position(height, width)
-        letter_2position = get_letter_position(height, width)
-        letters_positions[letter] = [letter_1position, letter_2position]
+        letters_positions[letter] = [get_letter_position(height, width), get_letter_position(height, width)]
 
     return board
 
-def print_board(board):
+def print_board(board, shadow=False):
 
     console_clear()
 
@@ -111,13 +109,13 @@ def get_move(board):
      
     return row, col
 
+
 def board_revealed(board):
-    for row in board:
-        for col in board[row]:
+    for row in len(board):
+        for col in range(len(board[row])):
             if board[row][col] == '#':
                 return False
     return True
-
 
 def main():
     
