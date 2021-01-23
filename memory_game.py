@@ -110,6 +110,13 @@ def get_move(board):
      
     return row, col
 
+def board_revealed(board):
+    for row in board:
+        for cols in board[row]:
+            if board[row][col] == '#':
+                return False
+    return True
+
 
 def main():
     # while not endgame
