@@ -57,10 +57,12 @@ def generate_board(height, width):
 
     return board
 
-def print_board(board, shadow=False):
+def print_board(board):
+
+    console_clear()
 
     print(2*' ', end="")
-    letters_to_use = alphabet[0:len(board)]
+    letters_to_use = alphabet[0:len(board[0])]
     for letter in letters_to_use:
         print(letter, end=" ")
     print('\n')
